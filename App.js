@@ -10,6 +10,10 @@ import HomeScreen from './src/pages/HomeScreen';
 import DetailScreen from './src/pages/DetailScreen';
 import ExploreScreen from './src/pages/ExploreScreen';
 import ProfileScreen from './src/pages/ProfileScreen';
+import SupportScreen from './src/pages/SupportScreen';
+import BookmarkScreen from './src/pages/BookmarkScreen';
+import SettingsScreen from './src/pages/SettingsScreen';
+import { DrawerContent } from './src/pages/DrawerContent';
 
 const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
@@ -139,15 +143,26 @@ const DetailStackRouter = ({ navigation }) => {
 
 function DrawerRouter() {
   return (
-    <Drawer.Navigator initialRouteName='Home'>
+    <Drawer.Navigator 
+      initialRouteName='HomeDrawer'
+      drawerContent={props => <DrawerContent {...props}/>}
+    >
       <Drawer.Screen
-        name="Home"
+        name="HomeDrawer"
         component={TabRouter}
       />
-      {/* <Drawer.Screen
-        name="Detail"
-        component={DetailStackRouter}
-      /> */}
+      <Drawer.Screen
+        name="Support"
+        component={SupportScreen}
+      />
+      <Drawer.Screen
+        name="Bookmarks"
+        component={BookmarkScreen}
+      />
+      <Drawer.Screen
+        name="Settings"
+        component={SettingsScreen}
+      />
     </Drawer.Navigator>
   );
 }
